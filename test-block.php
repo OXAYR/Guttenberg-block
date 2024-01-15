@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       Test Block
  * Description:       Example block scaffolded with Create Block tool.
@@ -13,7 +14,7 @@
  * @package           create-block
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -24,10 +25,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function test_block_test_block_block_init() {
-	register_block_type( __DIR__ . '/build' );
+function test_block_test_block_block_init()
+{
+	register_block_type(__DIR__ . '/build');
 }
-add_action( 'init', 'test_block_test_block_block_init' );
+add_action('init', 'test_block_test_block_block_init');
 
 
 /**
@@ -36,114 +38,171 @@ add_action( 'init', 'test_block_test_block_block_init' );
 
 
 
-function test_block_register_settings() {
-    add_option('test_block_text', 'Hello, default text!');
-    add_option('test_block_content_color', '#000000');
-    add_option('test_block_padding', array(
-        'top'    => '10px',
-        'right'  => '10px',
-        'bottom' => '10px',
-        'left'   => '10px',
-    ));
+function test_block_register_settings()
+{
+	add_option('test_block_text', 'Hello, default text!');
+	add_option('test_block_content_color', '#000000');
+	add_option('test_block_padding', array(
+		'top'    => '10px',
+		'right'  => '10px',
+		'bottom' => '10px',
+		'left'   => '10px',
+	));
 }
 
-function test_block_settings_menu() {
-    add_menu_page(
+function test_block_settings_menu()
+{
+	add_menu_page(
 		//Page Title
-        'Test Block Settings',
+		'Test Block Settings',
 		//Settings Title 
-        'Test Block',
+		'Test Block',
 		// Allowing the user to manage options
-        'manage_options',
+		'manage_options',
 
-        'test_block_settings',
-        // function which would render on the load of the settings page 
+		'test_block_settings',
+		// function which would render on the load of the settings page 
 		'test_block_settings_page'
-    );
+	);
 }
 
-function test_block_settings_page() {
-    ?>
-    <div class="wrap">
-        <h2>Test Block Settings</h2>
-        <form method="post" action="options.php">
-            <?php
-            settings_fields('test_block_options');
-            do_settings_sections('test_block_settings');
-            submit_button();
-            ?>
-        </form>
-    </div>
-    <?php
+
+function test_block_settings_page()
+{
+?>
+
+	// here i have write actions=options.php cuz it is the built in script of wordpress and handles submission of settings page
+	<div class="wrap">
+		<h2>Test Block Settings</h2>
+		<form method="post" action="options.php">
+			<?php
+			// outputs the sections and their associated fields for a specific settings page.
+			// test_block_options is the slug of the page where the settings sections and fields were added
+			settings_fields('test_block_options');
+			do_settings_sections('test_block_settings');
+			submit_button();
+			?>
+		</form>
+	</div>
+<?php
 }
 
-function test_block_init_settings() {
-    register_setting('test_block_options', 'test_block_text');
-    register_setting('test_block_options', 'test_block_content_color');
-    register_setting('test_block_options', 'test_block_padding');
+function test_block_init_settings()
+{
+	register_setting('test_block_options', 'test_block_text');
+	register_setting('test_block_options', 'test_block_content_color');
+	register_setting('test_block_options', 'test_block_padding');
 }
 
-function test_block_settings_fields() {
-    add_settings_section(
-        'test_block_main_section',
-        'Main Settings',
-        'test_block_main_section_cb',
-        'test_block_settings'
-    );
+function test_block_settings_fields()
+{
+	add_settings_section(
+		'test_block_main_section',
+		'Main Settings',
+		'test_block_main_section_cb',
+		'test_block_settings'
+	);
 
-    add_settings_field(
-        'test_block_text',
-        'Default Text',
-        'test_block_text_cb',
-        'test_block_settings',
-        'test_block_main_section'
-    );
+	add_settings_field(
+		'test_block_text',
+		'Default Text',
+		'test_block_text_cb',
+		'test_block_settings',
+		'test_block_main_section'
+	);
 
-    add_settings_field(
-        'test_block_content_color',
-        'Content Color',
-        'test_block_content_color_cb',
-        'test_block_settings',
-        'test_block_main_section'
-    );
+	add_settings_field(
+		'test_block_content_color',
+		'Content Color',
+		'test_block_content_color_cb',
+		'test_block_settings',
+		'test_block_main_section'
+	);
 
-    add_settings_field(
-        'test_block_padding',
-        'Padding',
-        'test_block_padding_cb',
-        'test_block_settings',
-        'test_block_main_section'
-    );
+	add_settings_field(
+		'test_block_padding',
+		'Padding',
+		'test_block_padding_cb',
+		'test_block_settings',
+		'test_block_main_section'
+	);
 }
 
-function test_block_main_section_cb() {
-    echo '<p>Main settings for Test Block.</p>';
+function test_block_main_section_cb()
+{
+	echo '<p>Main settings for Test Block.</p>';
 }
 
-function test_block_text_cb() {
-    $text = get_option('test_block_text', 'Hello, default text!');
-    echo "<input type='text' name='test_block_text' value='{$text}' />";
+function test_block_text_cb()
+{
+	$text = get_option('test_block_text', 'Hello, default text!');
+	echo "<input type='text' name='test_block_text' value='{$text}' />";
 }
 
-function test_block_content_color_cb() {
-    $content_color = get_option('test_block_content_color', '#000000');
-    echo "<input type='text' name='test_block_content_color' value='{$content_color}' class='color-field' />";
+function test_block_content_color_cb()
+{
+	$content_color = get_option('test_block_content_color', '#000000');
+	echo "<input type='text' name='test_block_content_color' value='{$content_color}' class='color-field' />";
 }
 
-function test_block_padding_cb() {
-    $padding = get_option('test_block_padding', array(
-        'top'    => '10px',
-        'right'  => '10px',
-        'bottom' => '10px',
-        'left'   => '10px',
-    ));
+function test_block_padding_cb()
+{
+	$padding = get_option('test_block_padding', array(
+		'top'    => '10px',
+		'right'  => '10px',
+		'bottom' => '10px',
+		'left'   => '10px',
+	));
 
-    foreach ($padding as $key => $value) {
-        echo "<label>{$key}</label> <input type='text' name='test_block_padding[{$key}]' value='{$value}' /><br />";
-    }
+	foreach ($padding as $key => $value) {
+		echo "<label>{$key}</label> <input type='text' name='test_block_padding[{$key}]' value='{$value}' /><br />";
+	}
 }
 
 add_action('admin_init', 'test_block_init_settings');
 add_action('admin_menu', 'test_block_settings_menu');
 add_action('admin_init', 'test_block_register_settings');
 add_action('admin_init', 'test_block_settings_fields');
+
+
+/**
+ * Reacct based settings page
+ */
+
+
+
+function enqueue_custom_settings_script()
+{
+	wp_enqueue_script('wp-blocks');
+	wp_enqueue_script('wp-element');
+	wp_enqueue_script('wp-components');
+	wp_enqueue_script('wp-data');
+	wp_enqueue_script('wp-i18n');
+
+	wp_enqueue_script(
+		'custom-app-script',
+		plugins_url('/custom-gtb/build/index.js'),
+		array('wp-blocks', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n'),
+		'1.0',
+		true
+	);
+}
+
+add_action('admin_enqueue_scripts', 'enqueue_custom_settings_script');
+
+
+
+function add_custom_admin_page()
+{
+	add_menu_page(
+		'Test Block Settings',
+		'Test Block',
+		'manage_options',
+		'custom-settings-page',
+		function () {
+			echo '<div id="custom-settings-page"></div>';
+		}
+	);
+}
+
+add_action('admin_menu', 'add_custom_admin_page');

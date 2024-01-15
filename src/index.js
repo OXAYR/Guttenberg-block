@@ -21,11 +21,16 @@ import Edit from './edit';
 import save from './save';
 import metadata from './block.json';
 
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
+
+import React from 'react';
+// import ReactDOM from 'react-dom';
+import SettingsPage from './settings';
+
+document.addEventListener('DOMContentLoaded', function () {
+    const settingsPageContainer = document.getElementById('custom-settings-page');
+    ReactDOM.render(<SettingsPage />, settingsPageContainer);
+});
+
 registerBlockType( metadata.name, {
 	/**
 	 * @see ./edit.js

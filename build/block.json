@@ -9,7 +9,8 @@
   "description": "Block created by uzair for practice purposes",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "align": false
   },
   "attributes": {
     "text": {
