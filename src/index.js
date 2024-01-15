@@ -26,12 +26,15 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import SettingsPage from './settings';
 
-document.addEventListener('DOMContentLoaded', function () {
-    const settingsPageContainer = document.getElementById('custom-settings-page');
-    ReactDOM.render(<SettingsPage />, settingsPageContainer);
-});
 
-registerBlockType( metadata.name, {
+// const { blockCategory, blockIcon } = wp.data.select('core/editor').getEditedPostAttribute('meta');
+
+
+
+registerBlockType(metadata.name, {
+	
+	// category: blockCategory || 'common', // Default to 'common' if not set
+	// icon: blockIcon || 'star',
 	/**
 	 * @see ./edit.js
 	 */
@@ -42,3 +45,9 @@ registerBlockType( metadata.name, {
 	 */
 	save: save,
 } );
+	
+
+document.addEventListener('DOMContentLoaded', function () {
+		const settingsPageContainer = document.getElementById('custom-settings-page');
+		ReactDOM.render(<SettingsPage />, settingsPageContainer);
+	});

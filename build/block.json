@@ -35,6 +35,14 @@
         "bottom": "10px",
         "left": "10px"
       }
+    },
+    "blockCategory": {
+      "type": "string",
+      "default": "widgets"
+    },
+    "blockIcon": {
+      "type": "string",
+      "default": "smiley"
     }
   },
   "textdomain": "test-block",

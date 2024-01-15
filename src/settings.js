@@ -1,40 +1,45 @@
 import React from 'react';
+import { __ } from "@wordpress/i18n";
 import { SelectControl, Button } from "@wordpress/components";
+import { useDispatch } from "@wordpress/data";
 
 const SettingsPage = () => {
-    // Dummy data for demonstration
+
     const dummyBlockCategory = "widgets";
     const dummyBlockIcon = "smiley";
+    const dispatch = useDispatch();
 
-    // Dummy function for demonstration
     const updateSetting = (key, value) => {
         console.log(`Setting ${key} updated to:`, value);
+
+        // dispatch("core/editor").editPost({
+        //     meta: {
+        //         [key]: value,
+        //     },
+        // });
     };
 
     return (
         <div className="wrap">
             <h2>Uzair Block Settings</h2>
             <form>
-                {/* Category Setting */}
                 <SelectControl
                     label="Category"
                     value={dummyBlockCategory}
                     options={[
-                        { label: "Widgets", value: "widgets" },
-                        { label: "Common Blocks", value: "common" },
-                        // Add more options as needed
+                        { label: __("Widgets", "uzair-block"), value: "widgets" },
+                        { label: __("Common Blocks", "uzair-block"), value: "common" },
                     ]}
                     onChange={(newValue) => updateSetting("blockCategory", newValue)}
                 />
 
-                {/* Icon Setting */}
+
                 <SelectControl
                     label="Icon"
                     value={dummyBlockIcon}
                     options={[
-                        { label: "Smiley", value: "smiley" },
-                        { label: "Star", value: "star" },
-                        // Add more options as needed
+                        { label: __("Smiley", "uzair-block"), value: "smiley" },
+                        { label: __("Star", "uzair-block"), value: "star" },
                     ]}
                     onChange={(newValue) => updateSetting("blockIcon", newValue)}
                 />
