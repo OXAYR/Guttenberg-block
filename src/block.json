@@ -9,29 +9,37 @@
 	"description": "Block created by uzair for practice purposes",
 	"example": {},
 	"supports": {
-	  "html": false
+		"html": false,
+		"align": false
 	},
 	"attributes": {
-	  "text": {
-		"type": "string",
-		"default": "Hello, default text!"
-	  },
-	  "content": {
-		"type": "string"
-	  },
-	  "tag":{
-		"type": "string",
-		"default": "h2"
-	  },
-	  "contentColor":{
-		"type": "string"
-	  }
-	  
+		"text": {
+			"type": "string",
+			"default": "Hello, default text!"
+		},
+		"content": {
+			"type": "string"
+		},
+		"tag": {
+			"type": "string",
+			"default": "h2"
+		},
+		"contentColor": {
+			"type": "string"
+		},
+		"padding": {
+			"type": "object",
+			"default": {
+				"top": "10px",
+				"right": "10px",
+				"bottom": "10px",
+				"left": "10px"
+			}
+		}
 	},
 	"textdomain": "test-block",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js"
-  }
-  
+}

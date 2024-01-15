@@ -6,14 +6,14 @@ import {
 	RichText,
 } from "@wordpress/block-editor";
 import { ColorPicker } from "@wordpress/components";
-import { TextControl, SelectControl } from "@wordpress/components";
+import { TextControl, SelectControl, __experimentalBoxControl as BoxControl } from "@wordpress/components";
 
 const { Fragment } = wp.element;
 import "./editor.scss";
 
 export default function Edit({ setAttributes, attributes }) {
 	const [text, setText] = useState(attributes.text || "");
-	const { content, tag, contentColor } = attributes;
+	const { content, tag, contentColor, padding } = attributes;
 	const onChangeText = (newText) => {
 		setText(newText);
 		setAttributes({ text: newText });
@@ -55,6 +55,11 @@ export default function Edit({ setAttributes, attributes }) {
 						defaultValue="#000"
 					/>
 				</div>
+				<BoxControl
+					values={padding}
+					onChange={(newPadding) => setAttributes({ padding: newPadding })}
+				/>
+
 			</InspectorControls>
 
 			<div {...useBlockProps({ className: "blog-info" })}>
@@ -67,7 +72,10 @@ export default function Edit({ setAttributes, attributes }) {
 						allowedFormats={["core/bold", "core/italic"]} // Allow the content to be made bold or italic, but do not allow other formatting options
 						onChange={(content) => setAttributes({ content })} // Store updated content as a block attribute
 						placeholder={__("Add content......", "uzair-block")} // Display this text before any content has been added by the user
-						style={{ color: contentColor }}
+						style={{
+							color: contentColor,
+							padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`,
+						}}
 					/>
 					<h1>{text}</h1>
 				</div>

@@ -1,7 +1,7 @@
 import { useBlockProps, RichText } from "@wordpress/block-editor";
 
 export default function save({ attributes }) {
-	const { text, tag, content,contentColor } = attributes;
+	const { text, tag, content, contentColor, padding } = attributes;
 	return (
 		<p {...useBlockProps.save()}>
 			<RichText.Content
@@ -9,7 +9,10 @@ export default function save({ attributes }) {
 				className="New-tag"
 				multiline="p"
 				value={content}
-				style={{color: contentColor}}
+				style={{
+					color: contentColor,
+					padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`,
+				}}
 			/>
 			{text}
 		</p>

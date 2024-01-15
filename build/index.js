@@ -39,7 +39,8 @@ function Edit({
   const {
     content,
     tag,
-    contentColor
+    contentColor,
+    padding
   } = attributes;
   const onChangeText = newText => {
     setText(newText);
@@ -93,7 +94,12 @@ function Edit({
     }),
     enableAlpha: true,
     defaultValue: "#000"
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalBoxControl, {
+    values: padding,
+    onChange: newPadding => setAttributes({
+      padding: newPadding
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       className: "blog-info"
     })
@@ -115,7 +121,8 @@ function Edit({
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add content......", "uzair-block") // Display this text before any content has been added by the user
     ,
     style: {
-      color: contentColor
+      color: contentColor,
+      padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, text))));
 }
@@ -199,7 +206,8 @@ function save({
     text,
     tag,
     content,
-    contentColor
+    contentColor,
+    padding
   } = attributes;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
@@ -210,7 +218,8 @@ function save({
     multiline: "p",
     value: content,
     style: {
-      color: contentColor
+      color: contentColor,
+      padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`
     }
   }), text);
 }
@@ -297,7 +306,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"custom-gtb/uzair-block","version":"0.1.0","title":"Uzair Block","category":"widgets","icon":"smiley","description":"Block created by uzair for practice purposes","example":{},"supports":{"html":false},"attributes":{"text":{"type":"string","default":"Hello, default text!"},"content":{"type":"string"},"tag":{"type":"string","default":"h2"},"contentColor":{"type":"string"}},"textdomain":"test-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"custom-gtb/uzair-block","version":"0.1.0","title":"Uzair Block","category":"widgets","icon":"smiley","description":"Block created by uzair for practice purposes","example":{},"supports":{"html":false},"attributes":{"text":{"type":"string","default":"Hello, default text!"},"content":{"type":"string"},"tag":{"type":"string","default":"h2"},"contentColor":{"type":"string"},"padding":{"type":"object","default":{"top":"10px","right":"10px","bottom":"10px","left":"10px"}}},"textdomain":"test-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 
