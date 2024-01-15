@@ -55,32 +55,32 @@ function Edit({
     label: "Post Format",
     value: tag,
     options: [{
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h1', "uzair-block"),
-      value: 'h1'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h1", "uzair-block"),
+      value: "h1"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h2', "uzair-block"),
-      value: 'h2'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h2", "uzair-block"),
+      value: "h2"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h3', "uzair-block"),
-      value: 'h3'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h3", "uzair-block"),
+      value: "h3"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h4', "uzair-block"),
-      value: 'h4'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h4", "uzair-block"),
+      value: "h4"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h5', "uzair-block"),
-      value: 'h5'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h5", "uzair-block"),
+      value: "h5"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('h6', "uzair-block"),
-      value: 'h6'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("h6", "uzair-block"),
+      value: "h6"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('p', "uzair-block"),
-      value: 'p'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("p", "uzair-block"),
+      value: "p"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('ol', "uzair-block"),
-      value: 'ol'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("ol", "uzair-block"),
+      value: "ol"
     }, {
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('ul', "uzair-block"),
-      value: 'ul'
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("ul", "uzair-block"),
+      value: "ul"
     }],
     onChange: tag => setAttributes({
       tag
@@ -88,8 +88,8 @@ function Edit({
     __nextHasNoMarginBottom: true
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPicker, {
     color: contentColor,
-    onChange: contentColor => setAttributes({
-      contentColor
+    onChange: newContentColor => setAttributes({
+      contentColor: newContentColor
     }),
     enableAlpha: true,
     defaultValue: "#000"
