@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "custom-gtb/uzair-block",
+  "version": "0.1.0",
+  "title": "Uzair Block",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Block created by uzair for practice purposes",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "default": "Hello, default text!"
+    },
+    "content": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "contentColor": {
+      "type": "string"
+    }
+  },
+  "textdomain": "test-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
