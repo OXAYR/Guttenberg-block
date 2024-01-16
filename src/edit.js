@@ -6,14 +6,15 @@ import {
 	RichText,
 } from "@wordpress/block-editor";
 import { ColorPicker } from "@wordpress/components";
-import { TextControl, SelectControl, __experimentalBoxControl as BoxControl } from "@wordpress/components";
+import { TextControl, SelectControl, __experimentalBoxControl as BoxControl, ToggleControl } from "@wordpress/components";
+import { InnerBlocks } from '@wordpress/block-editor';
 
 const { Fragment } = wp.element;
 import "./editor.scss";
 
 export default function Edit({ setAttributes, attributes }) {
 	const [text, setText] = useState(attributes.text || "");
-	const { content, tag, contentColor, padding } = attributes;
+	const { content, tag, contentColor, padding, useGridLayout } = attributes;
 	const onChangeText = (newText) => {
 		setText(newText);
 		setAttributes({ text: newText });
@@ -42,7 +43,7 @@ export default function Edit({ setAttributes, attributes }) {
 							{ label: __("ol", "uzair-block"), value: "ol" },
 							{ label: __("ul", "uzair-block"), value: "ul" },
 						]}
-						onChange={(tag) => setAttributes({ tag })}
+						onChange={(newTag) => setAttributes({ tag: newTag })}
 						__nextHasNoMarginBottom
 					/>
 
@@ -54,24 +55,31 @@ export default function Edit({ setAttributes, attributes }) {
 						enableAlpha
 						defaultValue="#000"
 					/>
-				</div>
-				<BoxControl
-					values={padding}
-					onChange={(newPadding) => setAttributes({ padding: newPadding })}
-				/>
 
+					<BoxControl
+						values={padding}
+						onChange={(newPadding) => setAttributes({ padding: newPadding })}
+					/>
+
+					{/* Switch control for grid layout */}
+					<ToggleControl
+						label={__("Use Grid Layout")}
+						checked={useGridLayout}
+						onChange={() => setAttributes({ useGridLayout: !useGridLayout })}
+					/>
+				</div>
 			</InspectorControls>
 
 			<div {...useBlockProps({ className: "blog-info" })}>
-				<div className="block-info">
+				<div className={`block-info ${useGridLayout ? 'grid-layout' : ''}`}>
 					<RichText
-						tagName={tag} // The tag here is the element output and editable in the admin
+						tagName={tag}
 						className="New-tag"
 						multiline="p"
-						value={content} // Any existing content, either from the database or an attribute default
-						allowedFormats={["core/bold", "core/italic"]} // Allow the content to be made bold or italic, but do not allow other formatting options
-						onChange={(content) => setAttributes({ content })} // Store updated content as a block attribute
-						placeholder={__("Add content......", "uzair-block")} // Display this text before any content has been added by the user
+						value={content}
+						allowedFormats={["core/bold", "core/italic"]}
+						onChange={(newContent) => setAttributes({ content: newContent })}
+						placeholder={__("Add content......", "uzair-block")}
 						style={{
 							color: contentColor,
 							padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`,
@@ -79,6 +87,10 @@ export default function Edit({ setAttributes, attributes }) {
 					/>
 					<h1>{text}</h1>
 				</div>
+			</div>
+
+			<div className={`inner-blocks-container ${useGridLayout ? 'horizontal-layout' : 'vertical-layout'}`}>
+				<InnerBlocks orientation={useGridLayout ? 'horizontal' : 'vertical'} />
 			</div>
 		</Fragment>
 	);

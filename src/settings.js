@@ -4,7 +4,6 @@ import { SelectControl, Button } from "@wordpress/components";
 import { useDispatch } from "@wordpress/data";
 
 const SettingsPage = () => {
-
     const dummyBlockCategory = "widgets";
     const dummyBlockIcon = "smiley";
     const dispatch = useDispatch();
@@ -12,11 +11,7 @@ const SettingsPage = () => {
     const updateSetting = (key, value) => {
         console.log(`Setting ${key} updated to:`, value);
 
-        // dispatch("core/editor").editPost({
-        //     meta: {
-        //         [key]: value,
-        //     },
-        // });
+        dispatch('core/editor').updateBlockSetting('custom-gtb/uzair-block', key, value);
     };
 
     return (
@@ -30,9 +25,8 @@ const SettingsPage = () => {
                         { label: __("Widgets", "uzair-block"), value: "widgets" },
                         { label: __("Common Blocks", "uzair-block"), value: "common" },
                     ]}
-                    onChange={(newValue) => updateSetting("blockCategory", newValue)}
+                    onChange={(newValue) => updateSetting("category", newValue)}
                 />
-
 
                 <SelectControl
                     label="Icon"
@@ -41,7 +35,7 @@ const SettingsPage = () => {
                         { label: __("Smiley", "uzair-block"), value: "smiley" },
                         { label: __("Star", "uzair-block"), value: "star" },
                     ]}
-                    onChange={(newValue) => updateSetting("blockIcon", newValue)}
+                    onChange={(newValue) => updateSetting("icon", newValue)}
                 />
 
                 <Button isPrimary onClick={() => alert("Settings saved!")}>

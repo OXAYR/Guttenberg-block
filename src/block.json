@@ -36,13 +36,9 @@
 				"left": "10px"
 			}
 		},
-		"blockCategory": {
-			"type": "string",
-			"default": "widgets"
-		},
-		"blockIcon": {
-			"type": "string",
-			"default": "smiley"
+		"useGridLayout": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"textdomain": "test-block",

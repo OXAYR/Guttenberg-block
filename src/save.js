@@ -1,4 +1,4 @@
-import { useBlockProps, RichText } from "@wordpress/block-editor";
+import { useBlockProps, RichText, InnerBlocks } from "@wordpress/block-editor";
 
 export default function save({ attributes }) {
 	const { text, tag, content, contentColor, padding } = attributes;
@@ -14,6 +14,7 @@ export default function save({ attributes }) {
 					padding: `${padding.top} ${padding.right} ${padding.bottom} ${padding.left}`,
 				}}
 			/>
+			<InnerBlocks.Content />
 			{text}
 		</p>
 	);
