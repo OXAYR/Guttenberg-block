@@ -61,7 +61,7 @@ export default function Edit({ setAttributes, attributes }) {
 						onChange={(newPadding) => setAttributes({ padding: newPadding })}
 					/>
 
-					{/* Switch control for grid layout */}
+				
 					<ToggleControl
 						label={__("Use Grid Layout")}
 						checked={useGridLayout}
